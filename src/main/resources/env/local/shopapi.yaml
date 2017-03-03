@@ -1,2 +1,5 @@
 
 environment: local
+
+server:
+  rootPath: /api/
