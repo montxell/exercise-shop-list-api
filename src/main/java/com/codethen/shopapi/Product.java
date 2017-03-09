@@ -1,6 +1,5 @@
 package com.codethen.shopapi;
 
-import java.util.Date;
 
 public class Product {
 
@@ -8,8 +7,6 @@ public class Product {
     private String name;
     private double price;
     private boolean available;
-    //private Date createdOn;  // Date se guarda en milisegundos se acumulan desde el 1 enero de 1970
-
 
 
     public Product(int id, String name, double price, boolean available) {
@@ -60,18 +57,5 @@ public class Product {
 
         this.available = available;
     }
-
-
-    /*
-    public Date getCreatedOn() {
-
-        return createdOn;
-    }
-
-    public void setCreatedOn(Date createdOn) {
-
-        this.createdOn = createdOn;
-    }
-    */
 
 }
