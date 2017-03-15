@@ -1,10 +1,9 @@
 package com.codethen.shopapi;
 
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ProductDAO {
@@ -17,20 +16,68 @@ public class ProductDAO {
 
         this.products = new ArrayList<>();
 
-        products.add(new Product(1, "tv", 1000, true));
-        products.add(new Product(2, "radio", 50, false));
-        products.add(new Product(3, "computer", 800, true));
-        products.add(new Product(4,"fridge", 1500, true));
-        products.add(new Product(5,"microwave", 200, false));
+
+        Product p1 = new Product();
+
+        p1.setId(1);
+        p1.setName("tv");
+        p1.setPrice(1000);
+        p1.setAvailable(true);
+
+        products.add(p1);
+
+
+        Product p2 = new Product();
+
+        p2.setId(2);
+        p2.setName("radio");
+        p2.setPrice(50);
+        p2.setAvailable(false);
+
+        products.add(p2);
+
+
+        Product p3 = new Product();
+
+        p3.setId(3);
+        p3.setName("computer");
+        p3.setPrice(800);
+        p3.setAvailable(true);
+
+        products.add(p3);
+
+
+        Product p4 = new Product();
+
+        p4.setId(4);
+        p4.setName("fridge");
+        p4.setPrice(1500);
+        p4.setAvailable(true);
+
+        products.add(p4);
+
+
+        Product p5 = new Product();
+
+        p5.setId(5);
+        p5.setName("microwave");
+        p5.setPrice(200);
+        p5.setAvailable(false);
+
+        products.add(p5);
+
 
     }
 
 
 
-    public List<Product> readProducts(Boolean available) {
+    public List<Product> getProducts() {
+        return products;
+    }
 
-        // Si ponemos boolean primitivo queremos que retorne los del filtro available solamente, y se debe indicar products?available=true or false
-        // Si ponemos Boolean entonces queremos la opción que retorne todos los productos si no ponemos filtro de available /products
+
+
+    public List<Product> getProductsByAvailability(Boolean available) {
 
         if (available == null) {
 
@@ -38,24 +85,35 @@ public class ProductDAO {
         }
 
 
+        // OPTION with FILTER
+
+        return products.stream()
+                .filter(product -> product.isAvailable())
+                .collect(Collectors.toList());
+
+
+/*
+    // ALTERNATIVE OPTION
+
         List<Product> result = new ArrayList<>();
 
-        for (Product product : products) {
+        for (Product product : productDAO.getProducts()) {
 
-            if (product.isAvailable() == available) {       // Comparación de boooleanos para ver si la disponibilidad es la que
-                                                            // yo he pedido en boolean available
+            if (product.isAvailable() == available) {
+
                 result.add(product);
             }
-
         }
 
         return result;
+    }
+*/
 
     }
 
 
 
-    public Product readProduct(int id) {
+    public Product findProductById(int id) {
 
         for (Product product : products) {
             if(product.getId() == id) {
@@ -63,7 +121,7 @@ public class ProductDAO {
             }
         }
 
-        throw new WebApplicationException(Response.Status.NOT_FOUND);
+        return null;
     }
 
 
@@ -73,7 +131,7 @@ public class ProductDAO {
         double maxPrice = 0;
         Product bestProduct = null;
 
-        for(Product product : products) {
+        for (Product product : products) {
 
             if (product.isAvailable() && product.getPrice() > maxPrice) {
 
@@ -89,9 +147,9 @@ public class ProductDAO {
 
 
 
-    public Product createProduct(int id, String name, double price, boolean available) {
+    public Product createProduct(Product product) {
 
-        Product product = new Product(id, name, price, available);
+        System.out.println("Creating the product: " + product.getName());
 
         products.add(product);
 
@@ -101,22 +159,15 @@ public class ProductDAO {
 
 
 
-    public Product updateProduct(int id, String name, double price, boolean available) {
+    public Product updateProduct(int id, Product product) {
 
-        for (Product product : products) {
-            if(product.getId() == id) {
+        Product currentProduct = findProductById(id);
 
-                product.setName(name);
-                product.setPrice(price);
-                product.setAvailable(available);
+        System.out.println("Updating the product ID: " + id);
 
-                return product;
+        products.set(products.indexOf(currentProduct), product);
 
-            }
-        }
-
-        throw new WebApplicationException(Response.Status.NOT_FOUND);
-
+        return product;
     }
 
 
@@ -126,13 +177,13 @@ public class ProductDAO {
         for (Product product : products) {
             if(product.getId() == id) {
                 products.remove(product);
+                System.out.println("Deleting the product: " + product.getName());
                 return product;
             }
         }
 
-        throw new WebApplicationException(Response.Status.NOT_FOUND);
+        return null;
     }
-
 
 
 }

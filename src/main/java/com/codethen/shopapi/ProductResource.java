@@ -5,16 +5,15 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-// El ProductResource define los endpoints como get, post, put, delete, etc.
-
 
 @Path("/products")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+
 public class ProductResource {
 
 
-    private ProductDAO productDAO;  // Propiedad Lista de productos como base de datos
+    private ProductDAO productDAO;
 
 
     public ProductResource(ProductDAO productDAO) {
@@ -25,33 +24,29 @@ public class ProductResource {
 
 
 
-    //CRUD Methods
-
-    /** returns all the products based on the status of availability */
-
+    /** returns products based on the availability */
     @GET
-    public List<Product> readProducts(@QueryParam("available") Boolean available) {
+    public List<Product> getProductsByAvailability(@QueryParam("available") Boolean available) {
 
-        return productDAO.readProducts(available);
+        return productDAO.getProductsByAvailability(available);
 
     }
 
 
 
     /** returns the product based on the id */
-
     @GET
     @Path("{id}")
 
-    public Product readProduct(@PathParam("id") int id) {
+    public Product findProductById(@PathParam("id") int id) {
 
-        return productDAO.readProduct(id);
+        return productDAO.findProductById(id);
+
     }
 
 
 
     /** returns the best product in our catalog: the most expensive of the available products */
-
     @GET
     @Path("best")
     public Product findBestProduct() {
@@ -62,44 +57,34 @@ public class ProductResource {
 
 
 
-    /** adds a new product to our catalog */
-
+    /** creates a new product to our catalog */
     @POST
     @Path("create")
-    public Product createProduct(@QueryParam("id") int id,
-                                 @QueryParam("name") String name,
-                                 @QueryParam("price") double price,
-                                 @QueryParam("available") boolean available) {
+    public void createProduct(Product product) {
 
-
-        return productDAO.createProduct(id, name, price, available);
+        productDAO.createProduct(product);
 
     }
 
 
 
-    /** updates a product in our catalog */
-
+    /** updates a product of our catalog */
     @PUT
     @Path("{id}")
-    public Product updateProduct(@PathParam("id") int id,
-                                 @QueryParam("name") String name,
-                                 @QueryParam("price") double price,
-                                 @QueryParam("available") boolean available) {
+    public void updateProduct(@PathParam("id") int id, Product product) {
 
-        return productDAO.updateProduct(id, name, price, available);
+        productDAO.updateProduct(id, product);
 
     }
 
 
 
     /** removes a product from our catalog */
-
     @DELETE
     @Path("{id}")
-    public Product deleteProduct(@PathParam("id") int id) {
+    public void deleteProduct(@PathParam("id") int id) {
 
-        return productDAO.deleteProduct(id);
+        productDAO.deleteProduct(id);
 
     }
 
