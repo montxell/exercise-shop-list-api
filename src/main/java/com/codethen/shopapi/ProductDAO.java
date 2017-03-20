@@ -2,6 +2,7 @@ package com.codethen.shopapi;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -149,12 +150,35 @@ public class ProductDAO {
 
     public Product createProduct(Product product) {
 
+        int newId = maxIdProduct();
+        newId++;
+
+        product.setId(newId);
+
         System.out.println("Creating the product: " + product.getName());
 
         products.add(product);
 
         return product;
 
+    }
+
+
+    // Get the maxId from the list of products to set automatically the new product Id
+    public int maxIdProduct() {
+
+        int maxId = 0;
+
+        for (Product product : products) {
+
+            if (product.getId() > maxId) {
+
+                maxId = product.getId();
+
+            }
+        }
+
+        return maxId;
     }
 
 
