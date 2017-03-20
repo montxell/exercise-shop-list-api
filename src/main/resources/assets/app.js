@@ -80,9 +80,13 @@ function createProductsList(product) {
     var id = product.id;
     var nameElem = $("<p>").addClass("product-name").text(name);
     var buttonDiv = $("<div>").addClass("list-buttons");
-    var buttonEdit = $("<button>").addClass("button-edit").attr("data-productid", id).text("Edit");
-    var buttonDelete = $("<button>").addClass("button-delete").attr("data-productid", id).text("Delete");
+    var buttonEdit = $("<button>").addClass("button-edit").attr("data-productid", id);
+    var imageEdit = $("<i>").addClass("fa fa-pencil-square-o fa-lg").attr("aria-hidden", "true");
+    var buttonDelete = $("<button>").addClass("button-delete").attr("data-productid", id);
+    var imageDelete = $("<i>").addClass("fa fa-trash-o fa-lg").attr("aria-hidden", "true");
+    buttonEdit.append(imageEdit);
     buttonDiv.append(buttonEdit);
+    buttonDelete.append(imageDelete);
     buttonDiv.append(buttonDelete);
     var productLi = $("<li>");
     productLi.append(nameElem);

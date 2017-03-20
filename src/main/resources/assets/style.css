@@ -64,11 +64,11 @@ h1 {
   border: solid 1px #2A4E6E;
   border-radius: 10px;
   padding: 0; }
-  .products-list #products {
+  .products-list #products, .products-list #title-products {
     margin: 0px;
     padding: 0px;
     list-style-type: none; }
-    .products-list #products li {
+    .products-list #products li, .products-list #title-products li {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -83,20 +83,22 @@ h1 {
           -ms-flex-pack: justify;
               justify-content: space-between;
       padding: 10px; }
-      .products-list #products li p {
-        color: #2A4E6E;
+      .products-list #products li p, .products-list #title-products li p {
         margin: 0px; }
-      .products-list #products li .button-edit, .products-list #products li .button-delete {
+      .products-list #products li span, .products-list #title-products li span {
+        font-size: 14px;
+        margin-left: 19px; }
+      .products-list #products li .button-edit, .products-list #products li .button-delete, .products-list #title-products li .button-edit, .products-list #title-products li .button-delete {
         color: #ffffff;
         background-color: #728DA5;
         font-size: 14px;
         text-align: center;
-        width: 75px;
-        padding: 0px 10px;
+        width: 50px;
+        padding: 2px 2px;
         margin-left: 15px;
         border: 2px solid #2A4E6E;
         border-radius: 10px; }
-      .products-list #products li .button-edit:hover, .products-list #products li .button-delete:hover {
+      .products-list #products li .button-edit:hover, .products-list #products li .button-delete:hover, .products-list #title-products li .button-edit:hover, .products-list #title-products li .button-delete:hover {
         color: #2A4E6E;
         background-color: #ffffff; }
 
@@ -127,7 +129,7 @@ h1 {
     width: 250px;
     height: 20px; }
   .manage-list .manage-buttons {
-    margin-top: 30px; }
+    margin-top: 20px; }
 
 footer {
   font-size: 18px;
