@@ -1,0 +1,166 @@
+body {
+  color: #2A4E6E;
+  font-family: "Muli", sans-serif;
+  font-size: 20px;
+  margin: 0; }
+
+h1 {
+  color: #ffffff;
+  background-color: #728DA5;
+  text-align: center;
+  margin: 0;
+  padding: 20px; }
+
+.main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around; }
+
+.title-list, .title-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  width: 350px; }
+  .title-list h3, .title-info h3 {
+    font-size: 28px; }
+
+#button-new, #button-register, #button-cancel {
+  color: #ffffff;
+  background-color: #728DA5;
+  font-size: 18px;
+  text-align: center;
+  width: 85px;
+  padding: 0px 10px;
+  border: 2px solid #2A4E6E;
+  border-radius: 10px; }
+
+#button-new, #button-cancel {
+  margin-left: 15px; }
+
+#button-new:hover, #button-register:hover, #button-cancel:hover {
+  color: #2A4E6E;
+  background-color: #ffffff; }
+
+.products-list {
+  width: 350px;
+  border: solid 1px #2A4E6E;
+  border-radius: 10px;
+  padding: 0; }
+  .products-list #products {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none; }
+    .products-list #products li {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      padding: 10px; }
+      .products-list #products li p {
+        color: #2A4E6E;
+        margin: 0px; }
+      .products-list #products li .button-edit, .products-list #products li .button-delete {
+        color: #ffffff;
+        background-color: #728DA5;
+        font-size: 14px;
+        text-align: center;
+        width: 75px;
+        padding: 0px 10px;
+        margin-left: 15px;
+        border: 2px solid #2A4E6E;
+        border-radius: 10px; }
+      .products-list #products li .button-edit:hover, .products-list #products li .button-delete:hover {
+        color: #2A4E6E;
+        background-color: #ffffff; }
+
+.manage-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 350px;
+  margin-right: 15px; }
+  .manage-list #products-form label {
+    display: block; }
+  .manage-list #products-form input {
+    color: #2A4E6E;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: solid 1px #2A4E6E;
+    border-radius: 5px;
+    width: 250px;
+    height: 20px; }
+  .manage-list .manage-buttons {
+    margin-top: 30px; }
+
+footer {
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #728DA5;
+  text-align: center;
+  padding: 5px;
+  margin-top: 40px; }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px; }
+
+  .main {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+
+  .manage-list {
+    margin-top: 30px; } }
+
+/*# sourceMappingURL=style.css.map */

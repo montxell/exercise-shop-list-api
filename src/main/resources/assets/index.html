@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Shop Api</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h1>Products Management</h1>
+
+
+<div class="main">
+
+  <div class="section-list">
+
+    <div class="title-list">
+
+      <h3>Products List</h3>
+
+      <button id="button-new">New</button>
+
+    </div>
+
+
+    <div class="products-list">
+
+      <ul id="products"></ul>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="manage-list">
+
+    <div class="title-info">
+
+      <h3>Product Information</h3>
+
+    </div>
+
+
+    <form id="products-form">
+
+      <label id="label-id">Id</label>
+      <input id="product-id" name="id" type="text" />
+
+      <label>Name</label>
+      <input id="product-name" name="name" type="text" />
+
+      <label>Price</label>
+      <input id="product-price" name="price" type="text" />
+
+      <label>Available</label>
+      <input id="product-available" name="available" type="text" />
+
+    </form>
+
+
+    <div class="manage-buttons">
+
+      <button id="button-register"></button>
+
+      <button id="button-cancel">Cancel</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<footer>
+  <p>Copyright &copy; Shop Api</p>
+</footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
