@@ -59,7 +59,6 @@ public class ProductResource {
 
     /** creates a new product to our catalog */
     @POST
-    @Path("create")
     public void createProduct(Product product) {
 
         productDAO.createProduct(product);
