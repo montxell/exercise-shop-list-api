@@ -3,6 +3,7 @@ package com.codethen.shopapi;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,17 +11,20 @@ import java.util.stream.Collectors;
 public class ProductDAO {
 
     private List<Product> products;
+    private int id;
 
 
 
     public ProductDAO() {
 
         this.products = new ArrayList<>();
+        this.id = 1;
+
 
 
         Product p1 = new Product();
 
-        p1.setId(1);
+        p1.setId(incrementId());
         p1.setName("tv");
         p1.setPrice(1000);
         p1.setAvailable(true);
@@ -30,7 +34,7 @@ public class ProductDAO {
 
         Product p2 = new Product();
 
-        p2.setId(2);
+        p2.setId(incrementId());
         p2.setName("radio");
         p2.setPrice(50);
         p2.setAvailable(false);
@@ -40,7 +44,7 @@ public class ProductDAO {
 
         Product p3 = new Product();
 
-        p3.setId(3);
+        p3.setId(incrementId());
         p3.setName("computer");
         p3.setPrice(800);
         p3.setAvailable(true);
@@ -50,7 +54,7 @@ public class ProductDAO {
 
         Product p4 = new Product();
 
-        p4.setId(4);
+        p4.setId(incrementId());
         p4.setName("fridge");
         p4.setPrice(1500);
         p4.setAvailable(true);
@@ -60,7 +64,7 @@ public class ProductDAO {
 
         Product p5 = new Product();
 
-        p5.setId(5);
+        p5.setId(incrementId());
         p5.setName("microwave");
         p5.setPrice(200);
         p5.setAvailable(false);
@@ -75,6 +79,19 @@ public class ProductDAO {
     public List<Product> getProducts() {
         return products;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int incrementId() {
+        return this.id ++;
+    }
+
 
 
 
@@ -150,8 +167,7 @@ public class ProductDAO {
 
     public Product createProduct(Product product) {
 
-        int newId = maxIdProduct();
-        newId++;
+        int newId = incrementId();
 
         product.setId(newId);
 
@@ -161,24 +177,6 @@ public class ProductDAO {
 
         return product;
 
-    }
-
-
-    // Get the maxId from the list of products to set automatically the new product Id
-    public int maxIdProduct() {
-
-        int maxId = 0;
-
-        for (Product product : products) {
-
-            if (product.getId() > maxId) {
-
-                maxId = product.getId();
-
-            }
-        }
-
-        return maxId;
     }
 
 
@@ -198,9 +196,12 @@ public class ProductDAO {
 
     public Product deleteProduct(int id) {
 
-        for (Product product : products) {
-            if(product.getId() == id) {
-                products.remove(product);
+        Iterator<Product> iter = products.iterator();
+
+        while (iter.hasNext()) {
+            Product product = iter.next();
+            if(product.getId() == id ) {
+                iter.remove();
                 System.out.println("Deleting the product: " + product.getName());
                 return product;
             }
@@ -208,6 +209,5 @@ public class ProductDAO {
 
         return null;
     }
-
 
 }
