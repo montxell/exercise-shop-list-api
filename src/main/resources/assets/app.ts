@@ -1,8 +1,9 @@
 
+// TypeScript types
+/// <reference path="typings/jquery.d.ts" />
+
+
 console.log("Setting up jQuery!");
-
-let $ = jQuery;
-
 
 // Start showing the list of products
 getAllProducts();
@@ -23,9 +24,6 @@ $("#button-new").click(function() {
   // Clear the application form from previous actions
   $("input").val(null);
 
-  // Set ID input to disabled as the id is set automatically
-  //$("#product-id").attr("disabled", true);
-
   // Hide inputID
   $("#label-id").hide();
   $("#product-id").hide();
@@ -33,15 +31,15 @@ $("#button-new").click(function() {
   // Show application form to fill the attributes
   $(".manage-list").show();
 
-  // Call to click button Save method
-  clickRegister();
+  // Prepare button to save(add) the new product
+  prepareSaveOrUpdateButton();
 
 });
 
 
 
 // Click on button to edit a product
-function clickEdit() {
+function clickEditButton() {
 
   $(".button-edit").click(function() {
 
@@ -63,8 +61,8 @@ function clickEdit() {
     // Call to end-point:
     getProductById(productID);
 
-    // Click on button to save(update) the changes of the attributes
-    clickRegister();
+    // Prepare button to update the changes of the attributes
+    prepareSaveOrUpdateButton();
 
   });
 
@@ -72,8 +70,8 @@ function clickEdit() {
 
 
 
-// Click on button to add a product to the list or to update a product from the list
-function clickRegister() {
+// Click on button to add or update a product
+function prepareSaveOrUpdateButton() {
 
   $("#button-register").unbind("click");
 
@@ -90,7 +88,7 @@ function clickRegister() {
       updateProduct();
 
       // Set ID input to enabled
-      $("#product-id").attr("disabled", false);
+      $("#product-id").prop("disabled", false);
 
     }
 
@@ -104,7 +102,7 @@ function clickRegister() {
 
 
 // Click on button to remove a product from the list
-function clickDelete() {
+function clickDeleteButton() {
 
   $(".button-delete").click(function() {
 
@@ -129,7 +127,7 @@ function clickDelete() {
 $("#button-cancel").click(function(){
 
   // Set ID input to enabled
-  $("#product-id").attr("disabled", false);
+  $("#product-id").prop("disabled", false);
 
   // Empty the application form
   $("input").val(null);
@@ -174,9 +172,9 @@ function getAllProducts() {
 
       }
 
-      clickEdit();
+      clickEditButton();
 
-      clickDelete();
+      clickDeleteButton();
 
   });
 
@@ -235,7 +233,7 @@ function getProductById(productID) {
       let product = data;
 
       $("#product-id").val(product.id);
-      $("#product-id").attr("disabled", true);  // Set ID input to disabled
+      $("#product-id").prop("disabled", true);  // Set ID input to disabled
 
       $("#product-name").val(product.name);
       $("#product-price").val(product.price);
@@ -255,7 +253,7 @@ function addProduct() {
 
   let settings = {
       method: "POST",
-      url: "http://localhost:8080/api/products/create",
+      url: "http://localhost:8080/api/products/",
       contentType: 'application/json',
       dataType: "json",
       data: formToJSON()

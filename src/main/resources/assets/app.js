@@ -1,5 +1,4 @@
 console.log("Setting up jQuery!");
-var $ = jQuery;
 getAllProducts();
 $(".manage-list").hide();
 $("#button-new").click(function () {
@@ -8,9 +7,9 @@ $("#button-new").click(function () {
     $("#label-id").hide();
     $("#product-id").hide();
     $(".manage-list").show();
-    clickRegister();
+    prepareSaveOrUpdateButton();
 });
-function clickEdit() {
+function clickEditButton() {
     $(".button-edit").click(function () {
         var buttonClick = $(this);
         var productID = buttonClick.data("productid");
@@ -19,10 +18,10 @@ function clickEdit() {
         $("#product-id").show();
         $(".manage-list").show();
         getProductById(productID);
-        clickRegister();
+        prepareSaveOrUpdateButton();
     });
 }
-function clickRegister() {
+function prepareSaveOrUpdateButton() {
     $("#button-register").unbind("click");
     $("#button-register").click(function () {
         if ($("#button-register").html() == "Save") {
@@ -30,12 +29,12 @@ function clickRegister() {
         }
         else {
             updateProduct();
-            $("#product-id").attr("disabled", false);
+            $("#product-id").prop("disabled", false);
         }
         $(".manage-list").hide();
     });
 }
-function clickDelete() {
+function clickDeleteButton() {
     $(".button-delete").click(function () {
         if ($(".manage-list").show()) {
             $(".manage-list").hide();
@@ -46,7 +45,7 @@ function clickDelete() {
     });
 }
 $("#button-cancel").click(function () {
-    $("#product-id").attr("disabled", false);
+    $("#product-id").prop("disabled", false);
     $("input").val(null);
     $(".manage-list").hide();
 });
@@ -68,8 +67,8 @@ function getAllProducts() {
             var productLi = createProductsList(product);
             $("#products").append(productLi);
         }
-        clickEdit();
-        clickDelete();
+        clickEditButton();
+        clickDeleteButton();
     });
     promise.fail(function (jqXHR, textStatus, errorThrown) {
         console.error("Call failed: ", jqXHR);
@@ -106,7 +105,7 @@ function getProductById(productID) {
         console.log(data);
         var product = data;
         $("#product-id").val(product.id);
-        $("#product-id").attr("disabled", true);
+        $("#product-id").prop("disabled", true);
         $("#product-name").val(product.name);
         $("#product-price").val(product.price);
         $("#product-available").val(product.available);
@@ -118,7 +117,7 @@ function getProductById(productID) {
 function addProduct() {
     var settings = {
         method: "POST",
-        url: "http://localhost:8080/api/products/create",
+        url: "http://localhost:8080/api/products/",
         contentType: 'application/json',
         dataType: "json",
         data: formToJSON()
